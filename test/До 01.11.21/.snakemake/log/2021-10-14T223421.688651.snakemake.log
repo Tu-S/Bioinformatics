@@ -1,0 +1,73 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	fastqc
+	1	flagstat
+	1	index
+	1	mem
+	1	python
+	6
+
+[Thu Oct 14 22:34:21 2021]
+rule fastqc:
+    input: big_data.fastq.gz
+    output: big_data_fastqc.html
+    jobid: 1
+
+[Thu Oct 14 22:36:14 2021]
+Finished job 1.
+1 of 6 steps (17%) done
+
+[Thu Oct 14 22:36:14 2021]
+rule index:
+    input: ref.fa, big_data_fastqc.html
+    output: ref.fa.amb, ref.fa.ann, ref.fa.bwt, ref.fa.pac, ref.fa.sa
+    jobid: 2
+
+[Thu Oct 14 22:36:17 2021]
+Finished job 2.
+2 of 6 steps (33%) done
+
+[Thu Oct 14 22:36:17 2021]
+rule mem:
+    input: ref.fa.amb, ref.fa.ann, ref.fa.bwt, ref.fa.pac, ref.fa.sa
+    output: big_data.sam
+    jobid: 3
+
+[Thu Oct 14 23:00:54 2021]
+Finished job 3.
+3 of 6 steps (50%) done
+
+[Thu Oct 14 23:00:54 2021]
+rule flagstat:
+    input: big_data.sam
+    output: big_data_stat.txt
+    jobid: 4
+
+[Thu Oct 14 23:01:00 2021]
+Finished job 4.
+4 of 6 steps (67%) done
+
+[Thu Oct 14 23:01:00 2021]
+rule python:
+    input: big_data_stat.txt
+    output: big_data_answer.txt
+    jobid: 5
+
+[Thu Oct 14 23:01:00 2021]
+Finished job 5.
+5 of 6 steps (83%) done
+
+[Thu Oct 14 23:01:00 2021]
+localrule all:
+    input: big_data_fastqc.html, ref.fa.amb, ref.fa.ann, ref.fa.bwt, ref.fa.pac, ref.fa.sa, big_data.sam, big_data_stat.txt, big_data_answer.txt
+    jobid: 0
+
+[Thu Oct 14 23:01:00 2021]
+Finished job 0.
+6 of 6 steps (100%) done
+Complete log: /home/sergey/Studing/Bioinformatics/test/part1/.snakemake/log/2021-10-14T223421.688651.snakemake.log

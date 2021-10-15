@@ -1,0 +1,28 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	hello_world
+	2
+
+[Fri Oct 15 19:18:15 2021]
+rule hello_world:
+    output: hello/world.txt
+    jobid: 1
+
+[Fri Oct 15 19:18:15 2021]
+Finished job 1.
+1 of 2 steps (50%) done
+
+[Fri Oct 15 19:18:15 2021]
+localrule all:
+    input: hello/world.txt
+    jobid: 0
+
+[Fri Oct 15 19:18:15 2021]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: /home/sergey/Studing/Bioinformatics/test/part2/.snakemake/log/2021-10-15T191815.777930.snakemake.log
