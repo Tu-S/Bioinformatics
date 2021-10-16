@@ -8,13 +8,9 @@ if os.path.exists(path):
     for line in file:
         if "mapped" in line:
             data = re.findall(r'(\d+(?:\.\d+)?%)', line)
-            print(data[0])
             float = float(data[0].strip('%'))/100
-            if float > 0.9:
-                print("OK")
-            else:
-                print("Not OK")
+            print(float)
             break
 
 else:
-    print("file " + path + " does not exist")
+    sys.exit(2)
